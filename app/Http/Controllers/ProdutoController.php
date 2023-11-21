@@ -3,21 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produto;
+use App\Models\Categoria;
 
 class ProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function home()
-    {
-        return view('home');
-    }
-
-    public function sobre_nos()
-    {
-        return view('sobre_nos');
-    }
 
     /**
      * Show the form for creating a new resource.
