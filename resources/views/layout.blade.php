@@ -8,54 +8,76 @@
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
 
-<body>
-
-    <!--CABEÇALHO-->
-
-    <header>
-        <nav class="py-1 bg-black border-bottom border-light">
-            <div id="link-laranja" class="container d-flex flex-wrap">
-                <ul class="nav me-auto">
-                    <li class="nav-item"><a href="/" class="nav-link link-body-white px-2 active"
-                            aria-current="page">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link link-body-white px-2">Features</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link link-body-white px-2">Troubleshooting</a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link link-body-white px-2">Sobre nós</a></li>
-                </ul>
-                <ul class="nav">
-                    <li class="nav-item"><a href="#"
-                            class="nav-link link-body-white px-2"><strong>Login</strong></a></li>
-                    <li class="nav-item"><a href="#"
-                            class="nav-link link-body-white px-2"><strong>Cadastrar-se</strong></a></li>
-                    <li class="text-body-white px-2" style="color: white">|</li>
-                    <li class="nav-item"><a href="#"
-                            class="nav-link link-body-white px-2"><strong>Carrinho</strong></a></li>
-                </ul>
-            </div>
-        </nav>
-        <header class="py-1 mb-4 bg-black">
-            <div class="container d-flex flex-wrap justify-content-center">
-                <a href="/"
-                    class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                    <span style="color: rgb(255, 85, 23); font-size: 250%"><strong>Nozama</strong></span>
-                </a>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-                    <input type="search" class="form-control" placeholder="Pesquisar produtos..." aria-label="Search">
-                </form>
-            </div>
-        </header>
-    </header>
-
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <style>
+        #botao-carrinho-detalhes {
+            --bs-btn-color: #000;
+            --bs-btn-bg: #f8f9fa;
+            --bs-btn-border-color: rgb(255, 85, 23);
+            --bs-btn-hover-color: #f8f9fa;
+            --bs-btn-hover-bg: rgb(255 101 45);
+            --bs-btn-hover-border-color: #000;
+            --bs-btn-focus-shadow-rgb: rgb(49, 132, 253);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: rgb(255 68 0);
+            --bs-btn-active-border-color: #000;
+        }
+
+        #botao-carrinho-deletar {
+            --bs-btn-color: #000;
+            --bs-btn-border-color: #000;
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: #000;
+            --bs-btn-hover-border-color: #000;
+            --bs-btn-focus-shadow-rgb: 13, 110, 253;
+            --bs-btn-active-color: rgb(255, 85, 23);
+            --bs-btn-active-bg: #000;
+            --bs-btn-active-border-color: #000
+        }
+
+        #botao-sidebar {
+            --bs-btn-color: #000000;
+            --bs-btn-hover-color: #000000;
+            --bs-btn-bg: #d44713;
+            --bs-btn-hover-bg: rgb(255, 85, 23);
+        }
+
+        .pagination {
+            --bs-pagination-bg: #000000;
+            --bs-pagination-color: #ffff;
+            --bs-pagination-active-bg: #ff5517;
+            --bs-pagination-hover-color: #ffff;
+            --bs-pagination-hover-bg: #ff5517;
+            --bs-pagination-focus-bg: #d44713;
+            --bs-pagination-focus-color: #ffff;
+            --bs-pagination-focus-box-shadow: #ff551769;
+            --bs-pagination-active-border-color: #000;
+            --bs-pagination-font-size: 1.699em;
+
+        }
+
+        #conteudo {
+            background-color: white;
+        }
+
+        #limite {
+            width: 97%;
+            margin: 0 auto;
+        }
+
+        body {
+            background: #000000
+        }
+
+        input[type="search"]:focus {
+
+            border-width: 2px;
+            box-shadow: none;
+            border-color: #ff5517;
+        }
+
         #link-laranja a {
             color: white
         }
@@ -65,6 +87,10 @@
         }
 
         #link-laranja ul li a:hover {
+            color: rgb(255, 85, 23);
+        }
+
+        #link-laranja .list-group:hover {
             color: rgb(255, 85, 23);
         }
 
@@ -84,73 +110,45 @@
             border-color: rgb(255, 85, 23) !important
         }
 
+        .list-group-item {
+            border-color: rgb(255, 85, 23) !important
+        }
+
+        #botao-comprar {
+            background-color: black;
+            border: none
+        }
+
+        #botao-comprar:hover {
+            background-color: rgb(255, 85, 23)
+        }
+
         #rodape {
             display: flex;
             flex-direction: column;
             height: 100%;
         }
     </style>
+</head>
 
-    @yield('conteudo')
+<body>
+    <!--SIDEBAR-->
+    @include('components.sidebar')
 
+    <!--CABEÇALHO-->
+    @include('components.header')
+
+
+    <!--CONTEÚDO-->
+    <div id="conteudo" class="border border-white py-3">
+        <div id="limite">
+            @yield('conteudo')
+        </div>
+    </div>
 
 
     <!--RODAPÉ-->
-
-    <div class="wrapper" id="rodape">
-        <div id="link-laranja" class="container-fluid bg-black">
-            <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-0 my-3">
-                <div class="col mb-3">
-                    <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none"
-                        style="font-size: 200%">
-                        <strong style="color: white">Nozama</strong>
-                    </a>
-                    <p style="color: white">© 2023</p>
-                </div>
-                <div class="col mb-3">
-                </div>
-                <div class="col mb-3">
-                    <h5 style="color: rgb(255, 85, 23)">Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Features</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Pricing</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">About</a></li>
-                    </ul>
-                </div>
-                <div class="col mb-3">
-                    <h5 style="color: rgb(255, 85, 23)">Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Features</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Pricing</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">About</a></li>
-                    </ul>
-                </div>
-                <div class="col mb-3">
-                    <h5 style="color: rgb(255, 85, 23)">Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Home</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Features</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">Pricing</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">FAQs</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-white">About</a>
-                        </li>
-                    </ul>
-                </div>
-            </footer>
-        </div>
-    </div>
+    @include('components.footer')
 
 
 
