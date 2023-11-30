@@ -125,13 +125,13 @@
             </div>
 
             <!-- Sidebar Message
-                                <div class="sidebar-card d-none d-lg-flex">
-                                    <img class="sidebar-card-illustration mb-2" src={{ asset('img / undraw_rocket . svg') }} alt="...">
-                                    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
-                                        and more!</p>
-                                    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-                                        Pro!</a>
-                                </div>-->
+                <div class="sidebar-card d-none d-lg-flex">
+                    <img class="sidebar-card-illustration mb-2" src={{ asset('img / undraw_rocket . svg') }} alt="...">
+                    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
+                        and more!</p>
+                    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
+                        Pro!</a>
+                </div>-->
 
         </ul>
         <!-- End of Sidebar -->
@@ -357,9 +357,24 @@
                         <h1 class="h3 mb-0 text-gray-800">Produtos</h1>
                         <!-- /.container-fluid -->
 
+                        @include('admin.produtos.create')
+
+
+                    </div>
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h4 class="h4 mb-0 text-gray-900"><strong>{{ $todosprodutos->count() }}</strong> itens cadastrados
+                        </h4>
+                    </div>
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h4 class="h4 mb-0 text-gray-900">@include('admin.includes.mensagens')</h4>
                     </div>
 
                     @foreach ($produtos as $produto)
+                        @php
+                            $titulo = $produto->nome;
+                        @endphp
                         <div class="container mt-5 mb-5">
                             <div class="d-flex justify-content-center row">
                                 <div class="col-md-10">
@@ -371,7 +386,7 @@
                                             </a>
                                         </div>
                                         <div class="col-md-6 mt-1">
-                                            <a style="color: black" href="/produtos/{{ Str::slug($produto->name) }}">
+                                            <a href="/produtos/{{ Str::slug($produto->nome) }}" style="color: black">
                                                 <h5>
                                                     {{ $produto->nome }}
                                                 </h5>
@@ -405,26 +420,15 @@
                                         </div>
                                         <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                                             <div class="d-flex flex-row align-items-center">
-                                                <h4 class="mr-1">R${{ number_format($produto->price, 2, ',', '.') }}
+                                                <h4 class="mr-1">R${{ number_format($produto->preco, 2, ',', '.') }}
                                                 </h4>
                                                 <span class="strike-text">{{-- preço antigo --}}</span>
                                             </div>
                                             <h6 class="text-success">Free shipping</h6>
                                             <div class="d-flex flex-column mt-4">
-                                                <form action="">
-                                                    <button id="botao-carrinho-detalhes" class="btn btn-primary btn-sm">
-                                                        Detalhes
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('site.removecarrinho') }}" method="POST"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <input type="hidden" name="id" value="{{ $produto->id }}">
-                                                    <button id="botao-carrinho-deletar"
-                                                        class="btn btn-outline-primary btn-sm mt-2">
-                                                        Remover do carrinho
-                                                    </button>
-                                                </form>
+
+                                                @include('admin.produtos.delete')
+
                                             </div>
                                         </div>
                                     </div>
