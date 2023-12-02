@@ -60,6 +60,7 @@ class DashboardController extends Controller
     {
         $produtos = Produto::paginate(12);
         $todosprodutos = Produto::all();
-        return view('admin.produtos', compact('produtos', 'todosprodutos'));
+        $categorias = Categoria::all();
+        return view('admin.produtos', compact('produtos', 'todosprodutos', 'categorias'));
     }
 }
