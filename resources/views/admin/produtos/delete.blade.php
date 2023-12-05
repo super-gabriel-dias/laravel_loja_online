@@ -20,7 +20,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form action="{{ route('admin.delete', $produto->id) }}" method="POST">
+                <form action="{{ route('admin.produto.delete', $produto->id) }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-primary">Deletar</button>
