@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('titulo')
-    Dashboard
+    Produtos
 @endsection
 
 @section('conteudo')
@@ -12,7 +12,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.dashboard')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                 </div>
                 <div class="sidebar-brand-text mx-3">
@@ -25,9 +25,14 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route('admin.dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route('site.home')}}">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Loja</span></a>
             </li>
 
             <!-- Divider -->
@@ -111,9 +116,9 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                <a class="nav-link" href="{{route('admin.produtos')}}">
+                    <i class="fas fa-fw fa-archive"></i>
+                    <span>Produtos</span></a>
             </li>
 
             <!-- Divider -->
@@ -125,13 +130,13 @@
             </div>
 
             <!-- Sidebar Message
-                <div class="sidebar-card d-none d-lg-flex">
-                    <img class="sidebar-card-illustration mb-2" src={{ asset('img / undraw_rocket . svg') }} alt="...">
-                    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
-                        and more!</p>
-                    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-                        Pro!</a>
-                </div>-->
+                                <div class="sidebar-card d-none d-lg-flex">
+                                    <img class="sidebar-card-illustration mb-2" src={{ asset('img / undraw_rocket . svg') }} alt="...">
+                                    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
+                                        and more!</p>
+                                    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
+                                        Pro!</a>
+                                </div>-->
 
         </ul>
         <!-- End of Sidebar -->
@@ -210,7 +215,7 @@
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
-                                    <div>
+                                    {{-- <div>
                                         <div class="small text-gray-500">December 12, 2019</div>
                                         <span class="font-weight-bold">A new monthly report is ready to
                                             download!</span>
@@ -237,9 +242,9 @@
                                         <div class="small text-gray-500">December 2, 2019</div>
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
+                                </a> --}}
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All
+                                        Alerts</a>
                             </div>
                         </li>
 
@@ -257,7 +262,7 @@
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                {{-- <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src={{ asset('img / undraw_profile_1.svg') }}
                                             alt="...">
@@ -305,7 +310,7 @@
                                             told me that people say this to all dogs, even if they aren't good...</div>
                                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                     </div>
-                                </a>
+                                </a> --}}
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More
                                     Messages</a>
                             </div>
@@ -428,6 +433,11 @@
                                             <div class="d-flex flex-column mt-4">
 
                                                 @include('admin.produtos.delete')
+
+                                            </div>
+                                            <div class="d-flex flex-column mt-4">
+
+                                                @include('admin.produtos.update')
 
                                             </div>
                                         </div>
