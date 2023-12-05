@@ -53,4 +53,8 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('adm
 
 Route::get('/admin/produtos', [DashboardController::class, 'produtos'])->name('admin.produtos');
 
-Route::delete('/admin/produtos/delete/{id}', [ProdutoController::class, 'destroy'])->name('admin.delete');
+Route::delete('/admin/produtos/delete/{id}', [ProdutoController::class, 'destroy'])->name('admin.produto.delete');
+
+Route::post('/admin/produtos/store', [ProdutoController::class, 'store'])->name('admin.produto.store');
+
+Route::put('/admin/produtos/update/{id}', [ProdutoController::class, 'update'])->name('admin.produto.update');
